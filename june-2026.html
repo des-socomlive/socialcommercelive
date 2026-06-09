@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 June 2026 — Social Commerce Live</title>
+<meta name="description" content="A look back at Social Commerce Live, 5 June 2026, Manchester Hall. The day that brought the UK's social commerce community together.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,700&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --black:#0b0b0b; --off:#111111; --panel:#161616; --red:#e02020; --red-dim:#9b1616;
+  --cream:#f0ebe2; --muted:#6a6560; --border:rgba(255,255,255,0.07); --gold:#c8922a;
+}
+body { background:var(--black); color:var(--cream); font-family:'Barlow',sans-serif; font-weight:300; line-height:1.65; overflow-x:hidden; cursor:none; }
+.cursor { position:fixed; width:10px; height:10px; background:var(--red); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width 0.2s,height 0.2s; mix-blend-mode:difference; }
+.cursor.grow { width:40px; height:40px; background:var(--cream); }
+.grain { position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity:0.04; pointer-events:none; z-index:9998; }
+
+nav { position:fixed; top:0; left:0; right:0; z-index:1000; padding:0 48px; height:68px; display:flex; align-items:center; justify-content:space-between; background:rgba(11,11,11,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+.nav-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; color:var(--cream); text-decoration:none; }
+.nav-logo .dot { color:var(--red); }
+.nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
+.nav-links a { font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover,.nav-links a.active { color:var(--cream); }
+.nav-cta { background:var(--red); color:#fff !important; padding:8px 20px; font-size:11px !important; letter-spacing:2px; }
+.nav-cta:hover { background:var(--red-dim) !important; }
+
+@keyframes riseIn { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 60% 30%, rgba(224,32,32,0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(200,146,42,0.06) 0%, transparent 50%),
+    var(--black);
+}
+
+.hero-lines {
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,0.02) 80px);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 140px 48px 0;
+}
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 28px;
+  opacity: 0; animation: riseIn 0.8s ease forwards 0.2s;
+}
+
+.hero-eyebrow .pill {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--gold); padding: 5px 12px;
+}
+
+.hero-eyebrow .line { flex:1; max-width:80px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); }
+
+.hero-h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 13vw, 180px);
+  line-height: 0.88; letter-spacing: 3px; color: var(--cream);
+  opacity: 0; animation: riseIn 1s ease forwards 0.35s;
+}
+
+.hero-h1 .red { color: var(--red); }
+.hero-h1 .dim { color: rgba(240,235,226,0.2); }
+
+.hero-sub {
+  font-size: clamp(15px, 1.8vw, 19px); font-weight: 300;
+  color: rgba(240,235,226,0.5); max-width: 520px;
+  margin-top: 24px; line-height: 1.7;
+  opacity: 0; animation: riseIn 1s ease forwards 0.55s;
+}
+
+.hero-strip {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: repeat(4,1fr);
+  border-top: 1px solid var(--border);
+  margin-top: 56px;
+  opacity: 0; animation: riseIn 1s ease forwards 0.75s;
+}
+
+.hero-strip-item { padding:24px 48px; border-right:1px solid var(--border); }
+.hero-strip-item:last-child { border-right:none; }
+.hero-strip-item .sl { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; font-weight:600; }
+.hero-strip-item .vl { font-size:15px; font-weight:600; color:var(--cream); }
+
+/* MARQUEE */
+.marquee-wrap { background:var(--red); overflow:hidden; padding:14px 0; }
+.marquee-inner { display:inline-block; white-space:nowrap; animation:marquee 22s linear infinite; font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:4px; color:rgba(255,255,255,0.9); }
+@keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+/* SECTIONS */
+section { padding:80px 48px; }
+.section-inner { max-width:1100px; margin:0 auto; }
+.section-label { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; display:flex; align-items:center; gap:12px; }
+.section-label::before { content:''; display:inline-block; width:24px; height:1px; background:var(--gold); }
+h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,5vw,68px); line-height:1; letter-spacing:1px; color:var(--cream); margin-bottom:24px; }
+.body-text { font-size:16px; color:rgba(240,235,226,0.6); max-width:640px; line-height:1.75; margin-bottom:14px; }
+.btn-primary { display:inline-block; background:var(--red); color:#fff; font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:16px 40px; text-decoration:none; transition:background 0.25s,transform 0.2s; }
+.btn-primary:hover { background:var(--red-dim); transform:translateY(-2px); }
+.btn-ghost { display:inline-block; background:transparent; color:rgba(240,235,226,0.6); font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; padding:16px 32px; text-decoration:none; border:1px solid rgba(255,255,255,0.12); transition:border-color 0.25s,color 0.25s; }
+.btn-ghost:hover { border-color:rgba(255,255,255,0.4); color:var(--cream); }
+
+/* THE DAY */
+.day-intro { background:var(--panel); }
+.day-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+
+.stat-row { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:40px; }
+.stat-box { background:var(--off); padding:32px 28px; }
+.stat-box .num { font-family:'Bebas Neue',sans-serif; font-size:56px; line-height:1; color:var(--red); margin-bottom:6px; }
+.stat-box .label { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:600; }
+
+/* AGENDA */
+.agenda { display:flex; flex-direction:column; gap:0; margin-top:48px; border:1px solid var(--border); }
+.agenda-row { display:grid; grid-template-columns:120px 1fr; gap:0; border-bottom:1px solid var(--border); transition:background 0.2s; }
+.agenda-row:last-child { border-bottom:none; }
+.agenda-row:hover { background:rgba(255,255,255,0.02); }
+.agenda-time { padding:28px 24px; border-right:1px solid var(--border); display:flex; align-items:flex-start; }
+.agenda-time span { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700; color:var(--red); letter-spacing:1px; }
+.agenda-body { padding:28px 32px; }
+.agenda-body h4 { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px; color:var(--cream); margin-bottom:8px; line-height:1; }
+.agenda-body p { font-size:14px; color:var(--muted); line-height:1.65; max-width:700px; }
+.agenda-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.agenda-tag { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); padding:4px 10px; font-weight:600; }
+.agenda-tag.highlight { border-color:rgba(224,32,32,0.4); color:var(--red); }
+
+/* SPEAKERS */
+.speakers-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-top:48px; border:1px solid var(--border); }
+.speaker-card { background:var(--panel); padding:32px 28px; transition:background 0.2s; position:relative; overflow:hidden; }
+.speaker-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--red),transparent); transform:scaleX(0); transition:transform 0.3s; transform-origin:left; }
+.speaker-card:hover { background:#1c1c1c; }
+.speaker-card:hover::before { transform:scaleX(1); }
+.speaker-card .sname { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px; color:var(--cream); margin-bottom:4px; line-height:1.1; }
+.speaker-card .srole { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--red); font-weight:600; margin-bottom:12px; }
+.speaker-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+
+/* BRANDS */
+.brands-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:40px; }
+.brand-cell { background:var(--panel); padding:32px 24px; display:flex; align-items:center; justify-content:center; text-align:center; transition:background 0.2s; }
+.brand-cell:hover { background:#1c1c1c; }
+.brand-cell span { font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(240,235,226,0.35); transition:color 0.2s; }
+.brand-cell:hover span { color:var(--cream); }
+
+/* QUOTE */
+.quote-section { background:var(--panel); }
+.pull-quote { border-left:3px solid var(--red); padding:32px 40px; margin-top:0; }
+.pull-quote p { font-family:'Barlow',sans-serif; font-size:clamp(18px,2.5vw,26px); font-weight:300; font-style:italic; color:rgba(240,235,226,0.8); line-height:1.6; max-width:100%; margin:0; }
+.pull-quote .attribution { font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:600; margin-top:16px; font-style:normal; }
+
+/* NEXT EVENT */
+.next-section { position:relative; overflow:hidden; }
+.next-section::before { content:'NEXT'; position:absolute; font-family:'Bebas Neue',sans-serif; font-size:30vw; color:rgba(224,32,32,0.04); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; white-space:nowrap; line-height:1; }
+.next-inner { position:relative; z-index:2; text-align:center; max-width:700px; margin:0 auto; }
+.next-inner h2 { font-size:clamp(56px,8vw,100px); margin-bottom:16px; }
+.next-inner .body-text { margin:0 auto 40px; text-align:center; max-width:480px; }
+
+/* VENUE */
+.venue-section { background:var(--panel); }
+.venue-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+.venue-detail { display:flex; flex-direction:column; gap:0; border:1px solid var(--border); }
+.venue-row { padding:18px 24px; border-bottom:1px solid var(--border); display:flex; gap:16px; align-items:baseline; }
+.venue-row:last-child { border-bottom:none; }
+.venue-row .vl { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:600; min-width:100px; flex-shrink:0; }
+.venue-row .vv { font-size:15px; color:var(--cream); font-weight:400; }
+
+/* FOOTER */
+footer { background:#080808; padding:48px; border-top:1px solid var(--border); }
+.footer-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; align-items:start; }
+.footer-brand { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:2px; color:var(--cream); margin-bottom:10px; }
+.footer-brand span { color:var(--red); }
+footer p { font-size:13px; color:var(--muted); line-height:1.6; max-width:100%; }
+.footer-nav h4 { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:16px; }
+.footer-nav ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-nav a { font-size:14px; color:rgba(240,235,226,0.5); text-decoration:none; transition:color 0.2s; }
+.footer-nav a:hover { color:var(--cream); }
+.footer-bottom { max-width:1100px; margin:32px auto 0; padding-top:24px; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.footer-bottom p { font-size:12px; color:rgba(106,101,96,0.6); margin:0; }
+
+@media(max-width:768px){
+  nav{padding:0 24px;} .nav-links{display:none;}
+  .hero-content{padding:110px 24px 0;}
+  section{padding:56px 24px;}
+  .hero-strip{grid-template-columns:1fr 1fr;}
+  .hero-strip-item{padding:16px 24px;}
+  .day-grid{grid-template-columns:1fr; gap:40px;}
+  .agenda-row{grid-template-columns:80px 1fr;}
+  .speakers-grid{grid-template-columns:1fr;}
+  .brands-grid{grid-template-columns:repeat(2,1fr);}
+  .venue-grid{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr; gap:28px;} footer{padding:40px 24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="grain"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Social Commerce <span class="dot">Live.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="june-2026.html" class="active">5 June 2026</a></li>
+    <li><a href="early-access.html" class="nav-cta">Register for the Next One</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="pill">Manchester, 5 June 2026</span>
+      <span class="line"></span>
+    </div>
+
+    <div class="hero-h1">
+      <div>What a</div>
+      <div class="red">Day</div>
+      <div class="dim">That Was.</div>
+    </div>
+
+    <p class="hero-sub">
+      Manchester Hall, Goulburn Suite. Doors opened at midday. The bar closed at eight. In between, something genuinely special happened.
+    </p>
+  </div>
+
+  <div class="hero-strip">
+    <div class="hero-strip-item">
+      <div class="sl">Date</div>
+      <div class="vl">Friday 5 June 2026</div>
+    </div>
+    <div class="hero-strip-item">
+      <div class="sl">Venue</div>
+      <div class="vl">Manchester Hall</div>
+    </div>
+    <div class="hero-strip-item">
+      <div class="sl">Official Partner</div>
+      <div class="vl">TikTok Shop</div>
+    </div>
+    <div class="hero-strip-item">
+      <div class="sl">Next Event</div>
+      <div class="vl">9 October 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    5 JUNE 2026 &nbsp;&#xB7;&nbsp; MANCHESTER HALL &nbsp;&#xB7;&nbsp; TIKTOK SHOP &nbsp;&#xB7;&nbsp; LIVE COMMERCE &nbsp;&#xB7;&nbsp; REAL CREATORS &nbsp;&#xB7;&nbsp; REAL NUMBERS &nbsp;&#xB7;&nbsp; COMMUNITY LED &nbsp;&#xB7;&nbsp; WHAT A DAY &nbsp;&#xB7;&nbsp; 5 JUNE 2026 &nbsp;&#xB7;&nbsp; MANCHESTER HALL &nbsp;&#xB7;&nbsp; TIKTOK SHOP &nbsp;&#xB7;&nbsp; LIVE COMMERCE &nbsp;&#xB7;&nbsp; REAL CREATORS &nbsp;&#xB7;&nbsp; REAL NUMBERS &nbsp;&#xB7;&nbsp; COMMUNITY LED &nbsp;&#xB7;&nbsp; WHAT A DAY &nbsp;&#xB7;&nbsp;
+  </div>
+</div>
+
+<!-- THE DAY -->
+<section class="day-intro">
+  <div class="section-inner">
+    <div class="day-grid">
+      <div>
+        <div class="section-label">The Day</div>
+        <h2>Everything We Hoped it Would Be</h2>
+        <p class="body-text">Doors opened at 12:00 and the room filled with people who had come to learn, connect, and be honest about what social commerce actually looks like from the inside. That energy never left.</p>
+        <p class="body-text">Brands sat on stage alongside creators and talked straight. TikTok sent Giulia Yang to give an unfiltered platform briefing. Kelly Jones stood up and told the room she had gone from zero to £400,000 on Whatnot since November 2025. Leighton Denny MBE brought a perspective that nobody else in the UK could have given. The room paid attention.</p>
+        <p class="body-text">At Novaro's studios, attendees rotated through in small batches and watched live affiliate broadcasts for Remington and George Foreman running in real time. Seeing it from the inside changed how a lot of people thought about live commerce.</p>
+        <p class="body-text">The formal programme wrapped at 18:00. The bar stayed open until 20:00. The conversations kept going long after that.</p>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="num">7</div>
+            <div class="label">Speakers on stage</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">5</div>
+            <div class="label">Brands represented</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">8hrs</div>
+            <div class="label">Doors open to close</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">MCR</div>
+            <div class="label">Manchester Hall</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">The Agenda</div>
+        <div class="agenda">
+          <div class="agenda-row">
+            <div class="agenda-time"><span>12:00</span></div>
+            <div class="agenda-body">
+              <h4>Doors Opened</h4>
+              <p>Registration, early networking, and bar access from the first minute. The room started buzzing before anything had even begun.</p>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time"><span>13:00</span></div>
+            <div class="agenda-body">
+              <h4>Intro and Brand Panel</h4>
+              <p>Des Hamilton and Chris Grimes opened the day before handing over to Remington, Nature Spell, and Richer Sounds. Brands were honest about why social commerce had become their biggest channel opportunity and what they needed from creators to make it work.</p>
+              <div class="agenda-tags"><span class="agenda-tag highlight">Brand Panel</span><span class="agenda-tag">Remington</span><span class="agenda-tag">Nature Spell</span><span class="agenda-tag">Richer Sounds</span></div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time"><span>14:00</span></div>
+            <div class="agenda-body">
+              <h4>TikTok Shop — Straight from the Platform</h4>
+              <p>Giulia Yang from TikTok delivered an unfiltered briefing on everything creators and brands needed to know about TikTok Shop in 2026. No PR spin. Just the people who build the platform talking honestly about where it was heading.</p>
+              <div class="agenda-tags"><span class="agenda-tag highlight">TikTok Shop</span><span class="agenda-tag">Platform Briefing</span></div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time"><span>14:45</span></div>
+            <div class="agenda-body">
+              <h4>Cross-Platform Strategy Keynote</h4>
+              <p>Chris Grimes laid out why the smartest creators were already building beyond a single platform, backed by real buyer performance data across TikTok, Instagram, Meta, and YouTube Shorts.</p>
+              <div class="agenda-tags"><span class="agenda-tag highlight">Keynote</span><span class="agenda-tag">Strategy</span></div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time"><span>14:00–16:00</span></div>
+            <div class="agenda-body">
+              <h4>Live Studio Visits at Novaro</h4>
+              <p>Attendees rotated through Novaro's studios in small batches to watch live TikTok Shop broadcasts running in real time for Remington and George Foreman. For many people in the room, this was the moment that made everything click.</p>
+              <div class="agenda-tags"><span class="agenda-tag highlight">Live Commerce</span><span class="agenda-tag">Novaro Studios</span></div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time"><span>16:00</span></div>
+            <div class="agenda-body">
+              <h4>Live Affiliate Panel</h4>
+              <p>Five of the UK's most experienced live commerce creators and affiliates took the stage and had real conversations about what it actually took to build a sustainable income from social commerce. The audience asked questions. Nobody gave rehearsed answers.</p>
+              <div class="agenda-tags"><span class="agenda-tag highlight">Panel</span><span class="agenda-tag">Live Commerce</span></div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time"><span>17:30</span></div>
+            <div class="agenda-body">
+              <h4>Closing Keynote — Des Hamilton</h4>
+              <p>Des closed the formal programme with a 30-minute keynote drawing together everything from the day and setting out a clear vision for where social commerce was heading and what every creator in the room should do next.</p>
+              <div class="agenda-tags"><span class="agenda-tag highlight">Closing Keynote</span></div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time"><span>18:00</span></div>
+            <div class="agenda-body">
+              <h4>Networking and Bar</h4>
+              <p>The formal programme ended. The bar stayed open. The room stayed alive. The best conversations of the day happened in this window.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">Who Was on Stage</div>
+    <h2>The People Who Made It</h2>
+    <p class="body-text">Seven people who gave their time, shared their real numbers, and made the day worth every minute.</p>
+
+    <div class="speakers-grid">
+      <div class="speaker-card">
+        <div class="sname">Giulia Yang</div>
+        <div class="srole">TikTok Shop</div>
+        <p>Delivered the platform briefing every creator in the room had been waiting for. Straight from the source, with no filter between the audience and the people who actually run TikTok Shop.</p>
+      </div>
+      <div class="speaker-card">
+        <div class="sname">Matt Scoones</div>
+        <div class="srole">Embarrassing Dad &nbsp;·&nbsp; Star Creator Ambassador</div>
+        <p>One of the most recognisable TikTok Shop affiliate creators in the UK. Honest, direct, and genuinely good at what he does.</p>
+      </div>
+      <div class="speaker-card">
+        <div class="sname">Gus McKay</div>
+        <div class="srole">Wellness Wonders &nbsp;·&nbsp; Star Creator Ambassador</div>
+        <p>TikTok Shop Star Creator Ambassador in the health and wellness space. Brought real live GMV numbers to a panel that did not shy away from specifics.</p>
+      </div>
+      <div class="speaker-card">
+        <div class="sname">Kelly Jones</div>
+        <div class="srole">Whatnot &nbsp;·&nbsp; £0 to £400k since Nov 2025</div>
+        <p>Stood on stage and told the room exactly how she had gone from zero to £400,000 in revenue on Whatnot in under eight months. One of the most memorable moments of the day.</p>
+      </div>
+      <div class="speaker-card">
+        <div class="sname">Leighton Denny MBE</div>
+        <div class="srole">Former QVC &nbsp;·&nbsp; Multi-million nail brand</div>
+        <p>A live commerce veteran with a perspective that nobody else in the room could have provided. Former QVC presenter and founder of a multi-million pound nail care brand.</p>
+      </div>
+      <div class="speaker-card">
+        <div class="sname">Joe Robertson</div>
+        <div class="srole">Novaro Live Creator</div>
+        <p>Live commerce creator at Novaro's Manchester studios, running real affiliate broadcasts for major consumer brands every week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="section-inner">
+    <div class="pull-quote">
+      <p>"The room was electric, the conversations were real, and every single person in that space brought something to it. That is not something you can manufacture."</p>
+      <div class="attribution">Des Hamilton &nbsp;·&nbsp; Co-Host, Social Commerce Live</div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">Brands in the Room</div>
+    <h2>Who Showed Up</h2>
+    <p class="body-text">Five brands represented on the panel and in the live studios at Novaro, each there to listen as much as to talk.</p>
+    <div class="brands-grid">
+      <div class="brand-cell"><span>Remington</span></div>
+      <div class="brand-cell"><span>Nature Spell</span></div>
+      <div class="brand-cell"><span>Richer Sounds</span></div>
+      <div class="brand-cell"><span>George Foreman</span></div>
+      <div class="brand-cell"><span>Russell Hobbs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section class="venue-section">
+  <div class="section-inner">
+    <div class="section-label">Where It Happened</div>
+    <h2>Manchester Hall</h2>
+    <div class="venue-grid">
+      <div>
+        <p class="body-text">Manchester Hall's Goulburn Dining Room was the right venue for the day. A proper space that made the event feel like it mattered. The kind of room where people paid attention.</p>
+        <p class="body-text">The afternoon live studio sessions ran at Novaro's offices nearby, where attendees visited in small batches and watched real affiliate broadcasts running in real time.</p>
+      </div>
+      <div class="venue-detail">
+        <div class="venue-row"><span class="vl">Venue</span><span class="vv">Manchester Hall, Goulburn Suite</span></div>
+        <div class="venue-row"><span class="vl">Address</span><span class="vv">36 Bridge Street, Manchester M3 3BT</span></div>
+        <div class="venue-row"><span class="vl">Studios</span><span class="vv">Novaro Offices, Manchester</span></div>
+        <div class="venue-row"><span class="vl">Doors</span><span class="vv">12:00</span></div>
+        <div class="venue-row"><span class="vl">Close</span><span class="vv">20:00</span></div>
+        <div class="venue-row"><span class="vl">Partner</span><span class="vv">TikTok Shop Partner Roadshow</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT EVENT -->
+<section class="next-section">
+  <div class="section-inner">
+    <div class="next-inner">
+      <div class="section-label" style="justify-content:center;">The Next One</div>
+      <h2>9 October 2026</h2>
+      <p class="body-text">Manchester. Same community. Same honesty. Tickets are not on sale yet but the priority list is open. Get on it for early access and a discounted rate.</p>
+      <a href="early-access.html" class="btn-primary">Register Your Interest</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Social Commerce <span>Live.</span></div>
+      <p>A community-led event for creators serious about social commerce. In partnership with TikTok Shop.</p>
+    </div>
+    <div class="footer-nav">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="june-2026.html">5 June 2026</a></li>
+        <li><a href="early-access.html">Register for the Next One</a></li>
+        <li><a href="early-access.html">Register for the Next One</a></li>
+        <li><a href="terms.html">Terms and Conditions</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <h4>Contact</h4>
+      <p>socialcommercelive.com<br>In partnership with TikTok Shop Partner Roadshow</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Social Commerce Live. All rights reserved.</p>
+    <p>socialcommercelive.com</p>
+  </div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', function(e) { cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; });
+  document.querySelectorAll('a,button').forEach(function(el) {
+    el.addEventListener('mouseenter',function(){cursor.classList.add('grow');});
+    el.addEventListener('mouseleave',function(){cursor.classList.remove('grow');});
+  });
+</script>
+</body>
+</html>
