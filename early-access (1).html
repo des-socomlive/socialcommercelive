@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register for the Next One — Social Commerce Live</title>
+<meta name="description" content="Social Commerce Live returns to Manchester on Friday 9 October 2026. Tickets not on sale yet. Get on the priority list for early access and a discounted rate.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,700&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --black:#0b0b0b; --off:#111111; --panel:#161616; --red:#e02020; --red-dim:#9b1616;
+  --cream:#f0ebe2; --muted:#6a6560; --border:rgba(255,255,255,0.07); --gold:#c8922a;
+}
+body { background:var(--black); color:var(--cream); font-family:'Barlow',sans-serif; font-weight:300; line-height:1.65; overflow-x:hidden; cursor:none; }
+.cursor { position:fixed; width:10px; height:10px; background:var(--red); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width 0.2s,height 0.2s; mix-blend-mode:difference; }
+.cursor.grow { width:40px; height:40px; background:var(--cream); }
+.grain { position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity:0.04; pointer-events:none; z-index:9998; }
+
+nav { position:fixed; top:0; left:0; right:0; z-index:1000; padding:0 48px; height:68px; display:flex; align-items:center; justify-content:space-between; background:rgba(11,11,11,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+.nav-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; color:var(--cream); text-decoration:none; }
+.nav-logo .dot { color:var(--red); }
+.nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
+.nav-links a { font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--cream); }
+.nav-cta { background:var(--red); color:#fff !important; padding:8px 20px; font-size:11px !important; }
+.nav-cta:hover { background:var(--red-dim) !important; }
+
+@keyframes riseIn { from{opacity:0;transform:translateY(28px);} to{opacity:1;transform:translateY(0);} }
+@keyframes fadeIn  { from{opacity:0;} to{opacity:1;} }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 40%, rgba(224,32,32,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 90%, rgba(200,146,42,0.05) 0%, transparent 50%),
+    var(--black);
+}
+
+.hero-lines {
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,0.02) 80px);
+  pointer-events: none;
+}
+
+/* BIG DATE */
+.date-display {
+  position: relative; z-index: 2;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: riseIn 1s ease forwards 0.1s;
+}
+
+.date-display .day {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(100px, 18vw, 260px);
+  line-height: 0.85;
+  letter-spacing: 4px;
+  color: var(--cream);
+  display: block;
+}
+
+.date-display .month-year {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 8vw, 110px);
+  letter-spacing: 8px;
+  color: var(--red);
+  display: block;
+  line-height: 1;
+}
+
+.date-display .outline-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 8vw, 110px);
+  letter-spacing: 8px;
+  -webkit-text-stroke: 1px rgba(240,235,226,0.15);
+  color: transparent;
+  display: block;
+  line-height: 1;
+}
+
+.hero-rule {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg, var(--red), transparent);
+  margin: 0 auto 32px;
+  position: relative; z-index: 2;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 0.5s;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 5vw, 72px);
+  letter-spacing: 4px;
+  color: var(--cream);
+  position: relative; z-index: 2;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: riseIn 0.9s ease forwards 0.6s;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: rgba(240,235,226,0.5);
+  max-width: 480px;
+  line-height: 1.7;
+  position: relative; z-index: 2;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: riseIn 0.9s ease forwards 0.75s;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  position: relative; z-index: 2;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: riseIn 0.9s ease forwards 0.9s;
+}
+
+.hero-meta-item {
+  padding: 16px 32px;
+  border-right: 1px solid var(--border);
+}
+.hero-meta-item:last-child { border-right: none; }
+.hero-meta-item .sl { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; font-weight:600; }
+.hero-meta-item .vl { font-size:14px; font-weight:600; color:var(--cream); }
+
+.hero-cta {
+  position: relative; z-index: 2;
+  opacity: 0;
+  animation: riseIn 0.9s ease forwards 1.05s;
+}
+
+.btn-primary { display:inline-block; background:var(--red); color:#fff; font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:18px 48px; text-decoration:none; transition:background 0.25s,transform 0.2s; }
+.btn-primary:hover { background:var(--red-dim); transform:translateY(-2px); }
+.btn-ghost { display:inline-block; background:transparent; color:rgba(240,235,226,0.6); font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; padding:18px 32px; text-decoration:none; border:1px solid rgba(255,255,255,0.12); transition:border-color 0.25s,color 0.25s; margin-left:16px; }
+.btn-ghost:hover { border-color:rgba(255,255,255,0.4); color:var(--cream); }
+
+/* MARQUEE */
+.marquee-wrap { background:var(--red); overflow:hidden; padding:14px 0; }
+.marquee-inner { display:inline-block; white-space:nowrap; animation:marquee 22s linear infinite; font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:4px; color:rgba(255,255,255,0.9); }
+@keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+/* WHAT TO EXPECT */
+section { padding:80px 48px; }
+.section-inner { max-width:1000px; margin:0 auto; }
+.section-label { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; display:flex; align-items:center; gap:12px; }
+.section-label::before { content:''; display:inline-block; width:24px; height:1px; background:var(--gold); }
+h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,5vw,68px); line-height:1; letter-spacing:1px; color:var(--cream); margin-bottom:24px; }
+.body-text { font-size:16px; color:rgba(240,235,226,0.6); max-width:640px; line-height:1.75; margin-bottom:14px; }
+
+.expect-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 48px;
+}
+
+.expect-card {
+  background: var(--panel);
+  padding: 36px 32px;
+  transition: background 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.expect-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red), transparent);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+  transform-origin: left;
+}
+
+.expect-card:hover { background: #1c1c1c; }
+.expect-card:hover::after { transform: scaleX(1); }
+
+.expect-card .icon { font-size: 28px; margin-bottom: 16px; display: block; }
+.expect-card h4 { font-family:'Barlow Condensed',sans-serif; font-size:16px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--cream); margin-bottom:10px; }
+.expect-card p { font-size:14px; color:var(--muted); line-height:1.65; }
+
+/* LAST EVENT STRIP */
+.last-event { background:var(--panel); padding:60px 48px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.last-event-inner { max-width:1000px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap; }
+.last-event h3 { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,4vw,48px); color:var(--cream); letter-spacing:1px; margin-bottom:8px; }
+.last-event p { font-size:15px; color:var(--muted); max-width:480px; line-height:1.6; }
+.last-event-stats { display:flex; gap:40px; flex-shrink:0; flex-wrap:wrap; }
+.lst { text-align:center; }
+.lst .n { font-family:'Bebas Neue',sans-serif; font-size:48px; color:var(--red); line-height:1; }
+.lst .l { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:600; margin-top:4px; }
+
+/* FORM SECTION */
+.form-section {
+  background: var(--black);
+  padding: 100px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-section::before {
+  content: 'OCT';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40vw;
+  color: rgba(224,32,32,0.03);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.form-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative; z-index: 2;
+  text-align: center;
+}
+
+.form-wrap h2 { margin-bottom: 8px; }
+.form-wrap .body-text { margin: 0 auto 48px; max-width: 100%; text-align: center; }
+
+.notice-box {
+  background: rgba(200,146,42,0.08);
+  border: 1px solid rgba(200,146,42,0.25);
+  padding: 16px 24px;
+  margin-bottom: 36px;
+  font-size: 13px;
+  color: rgba(200,146,42,0.9);
+  line-height: 1.5;
+  text-align: left;
+}
+
+.notice-box strong { display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; }
+
+.form-fields { display:flex; flex-direction:column; gap:16px; text-align:left; }
+.form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.form-group { display:flex; flex-direction:column; gap:7px; }
+label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+input, select { background:var(--panel); border:1px solid var(--border); color:var(--cream); font-family:'Barlow',sans-serif; font-size:15px; font-weight:300; padding:13px 16px; outline:none; transition:border-color 0.25s,background 0.25s; appearance:none; border-radius:0; width:100%; }
+input::placeholder { color:rgba(240,235,226,0.15); }
+input:focus, select:focus { border-color:var(--red); background:rgba(224,32,32,0.04); }
+select option { background:#161616; color:var(--cream); }
+
+.submit-btn { width:100%; background:var(--red); border:none; color:#fff; font-family:'Barlow Condensed',sans-serif; font-size:17px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:18px; cursor:pointer; transition:background 0.25s,transform 0.2s; margin-top:8px; }
+.submit-btn:hover { background:var(--red-dim); transform:translateY(-1px); }
+.form-note { font-size:12px; color:rgba(106,101,96,0.6); margin-top:14px; font-style:italic; line-height:1.5; text-align:center; }
+
+.success-msg { display:none; padding:60px 24px; border:1px solid var(--border); text-align:center; }
+.success-msg .tick { font-size:48px; margin-bottom:16px; }
+.success-msg h3 { font-family:'Bebas Neue',sans-serif; font-size:44px; color:var(--red); letter-spacing:2px; margin-bottom:12px; }
+.success-msg p { font-size:15px; color:var(--muted); max-width:360px; margin:0 auto; line-height:1.6; }
+
+/* FOOTER */
+footer { background:#080808; padding:48px; border-top:1px solid var(--border); }
+.footer-inner { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; }
+.footer-brand { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:2px; color:var(--cream); margin-bottom:10px; }
+.footer-brand span { color:var(--red); }
+footer p { font-size:13px; color:var(--muted); line-height:1.6; max-width:100%; }
+.footer-nav h4 { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:16px; }
+.footer-nav ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-nav a { font-size:14px; color:rgba(240,235,226,0.5); text-decoration:none; transition:color 0.2s; }
+.footer-nav a:hover { color:var(--cream); }
+.footer-bottom { max-width:1000px; margin:32px auto 0; padding-top:24px; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.footer-bottom p { font-size:12px; color:rgba(106,101,96,0.6); margin:0; }
+
+
+/* CHECKBOX GRID */
+.checkbox-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 8px;
+  border: 1px solid var(--border);
+}
+
+.cb-item {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cb-item:last-child { border-bottom: none; }
+
+.cb-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  background: var(--panel);
+  border: none;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.cb-item input[type="checkbox"]::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px; height: 10px;
+  background: var(--red);
+  transition: transform 0.15s ease;
+}
+
+.cb-item input[type="checkbox"]:checked {
+  background: rgba(224,32,32,0.1);
+  border-right-color: rgba(224,32,32,0.3);
+}
+
+.cb-item input[type="checkbox"]:checked::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cb-label {
+  flex: 1;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: rgba(240,235,226,0.65);
+  cursor: pointer;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 300;
+  line-height: 1.4;
+  transition: color 0.2s, background 0.2s;
+  background: var(--panel);
+}
+
+.cb-item input[type="checkbox"]:checked + .cb-label {
+  color: var(--cream);
+  background: rgba(224,32,32,0.05);
+}
+
+.cb-item:hover .cb-label { color: var(--cream); }
+.cb-item:hover input[type="checkbox"] { background: #1c1c1c; }
+
+@media(max-width:768px){
+  nav{padding:0 24px;} .nav-links{display:none;}
+  .hero{padding:100px 24px 64px;}
+  .hero-meta{flex-wrap:wrap;}
+  .hero-meta-item{padding:14px 20px;}
+  section{padding:56px 24px;}
+  .expect-grid{grid-template-columns:1fr;}
+  .last-event{padding:48px 24px;}
+  .last-event-inner{flex-direction:column; gap:28px;}
+  .form-section{padding:64px 24px;}
+  .form-row-2{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr; gap:28px;} footer{padding:40px 24px;}
+  .btn-ghost{margin-left:0; margin-top:12px; display:block; text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- Hidden Netlify form for detection -->
+<form name="october-2026-priority" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="first-name">
+  <input type="text" name="last-name">
+  <input type="email" name="email">
+  <input type="text" name="tiktok-handle">
+  <select name="attended-before"></select>
+  <input type="checkbox" name="topic-brands">
+  <input type="checkbox" name="topic-tiktok">
+  <input type="checkbox" name="topic-crossplatform">
+  <input type="checkbox" name="topic-live">
+  <input type="checkbox" name="topic-monetisation">
+  <input type="checkbox" name="topic-networking">
+  <input type="checkbox" name="topic-mindset">
+  <select name="how-heard"></select>
+</form>
+
+<div class="cursor" id="cursor"></div>
+<div class="grain"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Social Commerce <span class="dot">Live.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="june-2026.html">5 June 2026</a></li>
+    <li><a href="early-access.html" class="nav-cta active">Register for the Next One</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <div class="date-display">
+    <span class="day">9</span>
+    <span class="month-year">October</span>
+    <span class="outline-text">2026</span>
+  </div>
+
+  <div class="hero-rule"></div>
+
+  <h2 class="hero-title">Social Commerce Live is Back</h2>
+
+  <p class="hero-sub">Manchester. Friday 9 October 2026. Tickets are not on sale yet but you can register your interest now and be first in line.</p>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="sl">Date</div>
+      <div class="vl">Friday 9 October 2026</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="sl">City</div>
+      <div class="vl">Manchester</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="sl">Tickets</div>
+      <div class="vl">Not on sale yet</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="sl">Priority list</div>
+      <div class="vl">Open now</div>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#register" class="btn-primary">Register My Interest</a>
+    <a href="june-2026.html" class="btn-ghost">See the Last Event</a>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    9 OCTOBER 2026 &nbsp;&#xB7;&nbsp; MANCHESTER &nbsp;&#xB7;&nbsp; SOCIAL COMMERCE LIVE &nbsp;&#xB7;&nbsp; PRIORITY LIST NOW OPEN &nbsp;&#xB7;&nbsp; TIKTOK SHOP &nbsp;&#xB7;&nbsp; LIVE COMMERCE &nbsp;&#xB7;&nbsp; REAL CREATORS &nbsp;&#xB7;&nbsp; REAL NUMBERS &nbsp;&#xB7;&nbsp; 9 OCTOBER 2026 &nbsp;&#xB7;&nbsp; MANCHESTER &nbsp;&#xB7;&nbsp; SOCIAL COMMERCE LIVE &nbsp;&#xB7;&nbsp; PRIORITY LIST NOW OPEN &nbsp;&#xB7;&nbsp; TIKTOK SHOP &nbsp;&#xB7;&nbsp; LIVE COMMERCE &nbsp;&#xB7;&nbsp; REAL CREATORS &nbsp;&#xB7;&nbsp; REAL NUMBERS &nbsp;&#xB7;&nbsp;
+  </div>
+</div>
+
+<!-- WHAT TO EXPECT -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">What to Expect</div>
+    <h2>Another Full Day</h2>
+    <p class="body-text">We are still confirming the full programme but if you were at the last one you know what this is. If you were not, here is what we are building towards.</p>
+
+    <div class="expect-grid">
+      <div class="expect-card">
+        <span class="icon">🎤</span>
+        <h4>Brands on Stage</h4>
+        <p>Real brands sharing why social commerce is their biggest channel opportunity and what they are looking for from creators right now.</p>
+      </div>
+      <div class="expect-card">
+        <span class="icon">📱</span>
+        <h4>TikTok Shop Briefing</h4>
+        <p>Direct from the platform. What is changing, what is working, and what every creator needs to know heading into 2027.</p>
+      </div>
+      <div class="expect-card">
+        <span class="icon">🌐</span>
+        <h4>Cross-Platform Strategy</h4>
+        <p>TikTok Shop, YouTube Shopping, Instagram, Whatnot. The full social commerce picture with real data behind it.</p>
+      </div>
+      <div class="expect-card">
+        <span class="icon">🛒</span>
+        <h4>Live Commerce in Action</h4>
+        <p>Live studio sessions showing real affiliate broadcasts. See what drives conversions and what separates good content from great.</p>
+      </div>
+      <div class="expect-card">
+        <span class="icon">🤝</span>
+        <h4>Real Networking</h4>
+        <p>Creators, brands, and agencies in the same room. The kind of conversations that turn into campaigns and partnerships.</p>
+      </div>
+      <div class="expect-card">
+        <span class="icon">💬</span>
+        <h4>Honest Conversations</h4>
+        <p>No headquarters polish. No filler. Just the people doing the work being straight about what is actually happening in social commerce.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAST EVENT REFERENCE -->
+<div class="last-event">
+  <div class="last-event-inner">
+    <div>
+      <h3>Last time around</h3>
+      <p>Manchester Hall, 5 June 2026. Brands including Remington, Nature Spell, and Richer Sounds. TikTok in the room. Kelly Jones on stage explaining how she went from zero to £400,000 on Whatnot. A full day that people are still talking about.</p>
+      <div style="margin-top:24px;">
+        <a href="june-2026.html" class="btn-ghost" style="padding:12px 24px; font-size:12px;">Full Event Recap</a>
+      </div>
+    </div>
+    <div class="last-event-stats">
+      <div class="lst">
+        <div class="n">7</div>
+        <div class="l">Speakers</div>
+      </div>
+      <div class="lst">
+        <div class="n">5</div>
+        <div class="l">Brands</div>
+      </div>
+      <div class="lst">
+        <div class="n">8hrs</div>
+        <div class="l">Full day</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-section" id="register">
+  <div class="form-wrap">
+    <div class="section-label" style="justify-content:center;">Priority List</div>
+    <h2>Register Your Interest</h2>
+    <p class="body-text">Tickets are not on sale yet. This is an expression of interest only. Priority list members will get early access and a discounted rate before tickets go anywhere else.</p>
+
+    <div class="notice-box">
+      <strong>Expression of Interest</strong>
+      Registering here does not purchase a ticket. When tickets go on sale, priority list members will be contacted first with an exclusive discounted rate.
+    </div>
+
+    <form id="priorityForm" name="october-2026-priority" netlify class="form-fields">
+      <input type="hidden" name="form-name" value="october-2026-priority">
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="first-name" placeholder="First name" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="last-name" placeholder="Last name" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="tiktok">TikTok Handle</label>
+        <input type="text" id="tiktok" name="tiktok-handle" placeholder="@yourhandle">
+      </div>
+
+      <div class="form-group">
+        <label for="attended">Have you attended a previous event from Des or Chris?</label>
+        <select id="attended" name="attended-before" required>
+          <option value="" disabled selected>Select an option</option>
+          <option>Yes, I have attended a Des and/or Chris event</option>
+          <option>No, but I have been wanting to</option>
+          <option>No, this is my first time</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>What topics are you interested in at the next event? <span style="font-size:11px;color:var(--muted);letter-spacing:0;text-transform:none;font-weight:300;">(Select all that apply)</span></label>
+        <div class="checkbox-grid">
+          <div class="cb-item"><input type="checkbox" id="cb-brands" name="topic-brands"><label for="cb-brands" class="cb-label">Brands on stage and what they need from creators</label></div>
+          <div class="cb-item"><input type="checkbox" id="cb-tiktok" name="topic-tiktok"><label for="cb-tiktok" class="cb-label">TikTok Shop platform updates and strategy</label></div>
+          <div class="cb-item"><input type="checkbox" id="cb-cross" name="topic-crossplatform"><label for="cb-cross" class="cb-label">Cross-platform social commerce strategy</label></div>
+          <div class="cb-item"><input type="checkbox" id="cb-live" name="topic-live"><label for="cb-live" class="cb-label">Live commerce and affiliate selling</label></div>
+          <div class="cb-item"><input type="checkbox" id="cb-money" name="topic-monetisation"><label for="cb-money" class="cb-label">Scaling and monetisation as a creator</label></div>
+          <div class="cb-item"><input type="checkbox" id="cb-network" name="topic-networking"><label for="cb-network" class="cb-label">Networking with brands, agencies, and other creators</label></div>
+          <div class="cb-item"><input type="checkbox" id="cb-mindset" name="topic-mindset"><label for="cb-mindset" class="cb-label">Mindset and motivation</label></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="howheard">How did you hear about this event?</label>
+        <select id="howheard" name="how-heard" required>
+          <option value="" disabled selected>Select an option</option>
+          <option>Through word of mouth</option>
+          <option>I am in one of Des or Chris's communities</option>
+          <option>I saw a social media post</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">Register My Interest</button>
+    </form>
+
+    <p class="form-note">Your details will not be shared with third parties. You will only hear from us about Social Commerce Live.</p>
+
+    <div class="success-msg" id="successMsg">
+      <div class="tick">✓</div>
+      <h3>You are on the list.</h3>
+      <p>We will be in touch with early access details before tickets go anywhere else. See you on 9 October.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Social Commerce <span>Live.</span></div>
+      <p>A community-led event for creators serious about social commerce. In partnership with TikTok Shop.</p>
+    </div>
+    <div class="footer-nav">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="june-2026.html">5 June 2026</a></li>
+        <li><a href="early-access.html">Register for the Next One</a></li>
+        <li><a href="terms.html">Terms and Conditions</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <h4>The Event</h4>
+      <p>Friday 9 October 2026<br>Manchester<br>Tickets not on sale yet</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Social Commerce Live. All rights reserved.</p>
+    <p>socialcommercelive.com</p>
+  </div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', function(e) { cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; });
+  document.querySelectorAll('a,button').forEach(function(el) {
+    el.addEventListener('mouseenter',function(){cursor.classList.add('grow');});
+    el.addEventListener('mouseleave',function(){cursor.classList.remove('grow');});
+  });
+
+  document.getElementById('priorityForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = this;
+    var data = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    })
+    .then(function() {
+      form.style.display = 'none';
+      document.querySelector('.form-note').style.display = 'none';
+      var s = document.getElementById('successMsg');
+      s.style.display = 'block';
+    })
+    .catch(function(err) {
+      alert('Something went wrong. Please try again.');
+      console.error(err);
+    });
+  });
+</script>
+</body>
+</html>
